@@ -1,0 +1,47 @@
+<html ng-app="app">
+  <body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <div ng-controller="errorsCtrl" align="center">
+      <h1>Errors</h1>
+      <form style="width: 800px;">
+        Enter Error:
+        <input type="text" id="searchInput">
+        
+        <select id="errorSelect" ng-selected="getErrorTypeJson()" name="select">
+          <option value="Error">Error</option>
+          <option value="IllegalArgumentException">Illegal Argument Exception</option>
+          <option value="NullPointerException">Null Pointer Exception</option>
+        </select>
+        
+        <button ng-click="searchErrorMessages()">Search</button>
+        <br><br>
+        <div style="height: 300px; overflow: auto;">
+          <table data-toggle="table" data-cache="false" data-height="30" id="ecidsFoundTbl" class="table table-striped table-scrollable" data-row-style="rowStyle" data-click-to-select="true" data-select-item-name="radioName">
+            <thead>
+              <tr>
+                <th data-field="state" data-radio="true"></th>
+                <th>Filename</th>
+                <th>Line Number</th>
+                <th>Matching Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="matchingFileName in matchingFileNames track by $index">
+                <td>{{matchingFileName.path}}</td>
+                <td>{{matchingFileName.lineNumber}}</td>
+                <td>{{matchingFileName.data}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
